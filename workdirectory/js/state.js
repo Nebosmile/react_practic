@@ -1,26 +1,18 @@
-import { createStore} from 'redux';
+import { createStore, combineReducers} from 'redux';
+import * as reducers from './reducers/index.js'
+// import counterReducer from './reducers/counter';
+// import issuesReducer from './reducers/issues';
 console.log(createStore);
 
 
-for(let f = 5;f<10;f++)console.log(f);
-function reducer(state, action) {
-    switch (action.type) {
-    case 'INCREASE_COUNTER':
-        return {...state, ...{counter: (state.counter +1)}};
-    case 'RESET_COUNTER':
-        return {...state, ...{counter:0}};
-    default:
-        return state;
-    }
-    return state;
-}
+const reducer = combineReducers(reducers);
+
 
 const store = createStore(reducer,{
-    state:{
         issues:[],
         repositiry:'',
-        counter:0
-    }
-})
+        counter:0,
+        mabyActive:0,
+});
 
 export default store;

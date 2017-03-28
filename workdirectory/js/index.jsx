@@ -1,14 +1,14 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import App from './app';
 import store from './state';
-import ReactDOM from 'react-dom';
 
 
 
+ReactDOM.render(<App thisprops = {store.getState().mabyActive}/>, document.getElementById('workdiv'));
 
-React.render(<App/>, document.getElementById('workdiv'));
 
-store.subscribe(()=>console.log('New state', store));
+store.subscribe(()=>console.log('New state', store.getState()));
 
 console.log(1);
 store.dispatch({
@@ -25,4 +25,9 @@ store.dispatch({
 console.log(4);
 store.dispatch({
     type: 'Unknow',
+});
+console.log(5);
+store.dispatch({
+    type: 'LOAD_ISSUES',
+    payload:[{id:1,name:'First issue'},{id:2, name:"Second issue"}],
 });
