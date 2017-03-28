@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app';
 import store from './state';
+import {Provider} from 'react-redux';
+import App from './app';
 
 
 
-ReactDOM.render(<App thisprops = {store.getState().mabyActive}/>, document.getElementById('workdiv'));
+ReactDOM.render(
+    <Provider store ={store}>
+        <App />
+    </Provider>,
+    document.getElementById('workdiv')
+);
 
 
 store.subscribe(()=>console.log('New state', store.getState()));

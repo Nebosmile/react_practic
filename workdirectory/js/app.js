@@ -1,19 +1,17 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import store from './state';
 
 
-export default class App extends React.Component{
+class App extends React.Component{
     constructor(props){
         super(props);
-
-        this.state ={
-            numb: store.getState().mabyActive,
-        }
     }
     render(){
+
         return(
             <div>
-                <h1>Hello world{this.state.numb}</h1>
+                <h1>Hello world,{this.props.user}</h1>
                 <input type ='button' value= 'click me' onClick = {
                         ()=>{store.dispatch({
                             type: 'mabyActive',
@@ -24,3 +22,9 @@ export default class App extends React.Component{
         );
     }
 }
+function mapStateToProps(state) {
+    return{
+        user:state.mabyActive
+    }
+}
+export default connect(mapStateToProps)(App)
